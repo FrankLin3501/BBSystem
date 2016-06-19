@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>BBSystem - {{ article.title }}</title>
+		<style>
+			.container {
+				width: 90%;
+				margin: 0 auto;
+				background-color: lightyellow;
+				border: 1px solid black;
+			}
+			.title {
+				margin: 5px;
+			}
+			.context {
+				margin: 0 2%;
+				margin-top: 44px;
+			}
+			.context p {
+				margin: 0px;
+			}
+			a {
+				text-decoration: none;
+				color: #4fa900;
+			}
+			a:hover {
+				color: #76ff00;
+
+			}
+			a:visited {
+				color: #2c5f00;
+			}
+			.tr {
+				display: table-row;
+
+			}
+
+			.td {
+				display: table-cell;
+				padding: 0 10px;
+				font-size: 20pt;
+			}
+			.tb {
+				display: table;
+				float: right;
+				margin-right: 1%;
+			}
+
+		</style>
+	</head>
+	<body>
+		<div class="container">
+			<h1 class="title"><a href="{% url '_article' article.id %}">{{ article.title }}</a></h1>
+			<div class="tb">
+				<div class="tr">
+					<div class="td">作者：{{ article.user.nickname }}</div>
+					<div class="td">發布時間：{{ article.postdate|date:'Y/m/d' }}</div>
+				</div>
+			</div>
+			<div class="context">{{ article.context|safe|linebreaks }}</div>
+			<div class="message"></div>
+		</div>
+	</body>
+</html>

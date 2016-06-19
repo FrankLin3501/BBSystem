@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>BBSystem</title>
+		<meta charset="UTF-8" />
+		<style>
+			.container {
+				width: 90%;
+				margin: 0 auto;
+				background-color: lightyellow;
+				border: 1px solid black;
+
+			}
+			.title {
+				margin-top: 5px;
+				margin-bottom: 5px;
+			}
+			.td {
+				display: table-cell;
+				white-space: pre-wrap;
+				border: 1px solid black;
+			}
+			.tr {
+				display: table-row;
+
+			}
+			.tb {
+				display: table;
+				margin: 0 auto;
+			}
+			.td_title {
+				width: 70%;
+			}
+			.td_author {
+				width: 10%;
+			}
+			.td_postdate {
+				width: 10%;
+			}
+			a {
+				text-decoration: none;
+				color: #4fa900;
+			}
+			a:hover {
+				color: #76ff00;
+
+			}
+			a:visited {
+				color: #2c5f00;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="container">
+			<div class="tb">
+				<h1 class="tr">
+					<div class="td td_title" align="Center">標題</div>
+					<div class="td td_author" align="Center">作者</div>
+					<div class="td td_postdate" align="Center">發布時間</div>
+				</h1>
+				{{ dbList|safe }}
+			</div>
+		</div>
+	</body>
+</html>
