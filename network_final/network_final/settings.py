@@ -64,7 +64,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
-            ],
+            ]
         },
     },
 ]
@@ -83,7 +83,13 @@ DATABASES = {
 		'PASSWORD': 'pa55w0rd',
 		'HOST': '127.0.0.1',
 		'PORT': '3306',
+		'OPTIONS': {
+            'sql_mode': 'TRADITIONAL',
+			'charset': 'utf8',
+			'init_command': 'SET storage_engine=INNODB, character_set_connection=utf8, collation_connection=utf8_bin'
+		}
     }
+	
 }
 
 

@@ -16,12 +16,12 @@ Including another URLconf
 from django.conf.urls import url
 from django.contrib import admin
 
-from bbsystem.views import index, article
+from bbsystem import views as BBS_Views
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
-	url(r'^@', index),
+	#url(r'^@', index),
 	#url(r'home/', index),
-	url(r'^article/(?P<id>[0-9]+)/$', article, name='_article'),
-	url(r'', index),
+	url(r'^article/$', BBS_Views.article),
+	url(r'^', BBS_Views.index),
 ]

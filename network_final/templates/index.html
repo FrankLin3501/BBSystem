@@ -1,4 +1,3 @@
-<!DOCTYPE html>
 <html>
 	<head>
 		<title>BBSystem</title>
@@ -9,7 +8,6 @@
 				margin: 0 auto;
 				background-color: lightyellow;
 				border: 1px solid black;
-
 			}
 			.title {
 				margin-top: 5px;
@@ -58,7 +56,17 @@
 					<div class="td td_author" align="Center">作者</div>
 					<div class="td td_postdate" align="Center">發布時間</div>
 				</h1>
-				{{ dbList|safe }}
+				{% for article in articles reversed %}
+				<h1 class="tr">
+					<a class="td td_title" href="../article/?id={{ article.id }}">{{ article.title }}</a>
+					<a class="td td_author" href="../author/{{ article.user.nickname }}/">{{ article.user.nickname }}</a>
+					<div class="td td_postdate">{{ article.postdate|date:'Y/m/d' }}</div>
+				</h1>
+				{% empty %}
+				<h1 class="tr">
+					Nothing here..
+				</h1>
+				{% endfor %}
 			</div>
 		</div>
 	</body>

@@ -4,20 +4,34 @@ from django.http import HttpResponse
 from bbsystem.models import *
 from django.template import Context, loader
 from django.utils.html import escape
+from django.core import serializers
+
 
 def index(request):
+	print request.get_full_path()
 	response = u''
-	response1 = u""
-	list = Article.objects.all()
-	for var in list:
-		response1 += u'<h1 class="tr">'
-		response1 += u'<a class="td td_title" href="../article/{0}/">{1}</a>'.format(var.id, var.title)
-		response1 += u'<a class="td td_author" href="../author/{0}">{0}</a>'.format(var.user.nickname)
-		response1 += u'<div class="td td_postdate">{0}</div>'.format(var.postdate) + '</h1>'
-	response = response + response1
-	print response
-	return render(request, 'index.html', [{'dbList', response}], content_type="text/html; charset=utf8")
+	response1 = u''
+	a = Article.objects.all()
+	if a.count() == 0:
+		error(request)
+	content = {
+		'articles': a
+	}
+	return render(request, 'index.html', content, content_type="text/html; charset=utf8")
 
-def article(request, id):
-	article = Article.objects.get(id=int(id))
-	return render(request, 'article.html', [{'article', article}])
+def article(request):
+	pk = request.GET['id']
+	a = Article.objects.filter(id=int(pk))
+	if a.count() == 0:
+		return error(request)
+	messages = Message.objects.filter(article=a[0])
+	a = a[0]
+	content = {
+		'article': a,
+		'messages': messages
+	}
+	return render(request, 'article.html', content, content_type="text/html; charset=utf8")
+
+def error(request):
+	
+	return HttpResponse(u'404 Not Found')

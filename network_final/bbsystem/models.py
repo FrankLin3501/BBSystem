@@ -26,6 +26,7 @@ class Message(models.Model):
 	message = models.TextField()
 	postdate = models.DateField(auto_now_add=True)
 	article = models.ForeignKey(Article, on_delete=models.CASCADE)
+	user = models.ForeignKey(User, on_delete=models.CASCADE)
 
 	def __unicode__(self):
 		return self.message
